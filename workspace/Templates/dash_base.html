@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Application</title>
+    <!-- Include your CSS stylesheets, Bootstrap, or other libraries here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Your custom styles here */
+        
+        .toggle-btn {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .card-container{
+            background:#fff;
+            padding:2rem;
+            border-radius: 10px;
+
+        }
+        .card--wrapper{
+            display:flex;
+            flex-wrap:wrap;
+            gap:1rem;
+        }
+        .main--title{
+            color:rgba(113,99,186,255);
+            padding-top:40px;
+            padding-bottom:40px;
+            font-size :15px;
+        }
+        .payment--card{
+            background:rbg(299,233,233);
+            border-radius :10px;
+            width:290px;
+            height:150px;
+            display: flex;
+            flex-direction:column;
+            justify-content:space-between;
+            transition: all 0.5s ease-in-out;
+        }
+        .payment--card:hover{
+            transform:translateY(-50px);
+
+        }
+        .card--header{
+            display:flex;
+            justify-content:space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .amount{
+            display:flex;
+            flex-direction:column;
+
+        }
+        .title{
+            font-size:12px;
+            font-weight:200;
+        
+        }
+        .amount--value{
+            font-size:24px;
+            font-family:"Courier New",Courier monospace;
+            font-weight:600;
+        }
+        .icon{
+            color:#fff;
+            padding:1rem;
+            height:60px;
+            width:60px;
+            text-align:center;
+            border-radius:50%;
+            font-size:1.5rem;
+            background-color:red;
+        }
+        .card-details{
+            font-size:18px;
+            color:#777777;
+            letter-spacing:2px;
+            font-family:"Courier New",Courier monospace;
+
+        }
+        .light-red{
+            background:rgb(251,233,233);
+        }
+        .light-purple{
+            background:rgb(254,226,254);
+        }
+        .light-green{
+            background:rgb(254,226,254);
+        }
+        .light-blue{
+            background:rgb(254,226,254);
+        }
+        .orange {
+            background: rgb(255, 165, 0);
+        }
+    
+        .dark-red{
+            background:red;
+        }
+        .dark-purple{
+            background:purple;
+        }
+        .dark-green{
+            background-color:green;
+        }
+        .dark-blue{
+            background-color: #007bff;
+        }
+        .balance {
+            font-size: 24px; 
+            color: #333;
+            margin-bottom: 10px; 
+          }
+        .payment-button {
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px;
+            cursor: pointer; 
+            border-radius: 8px;
+            margin-right:15px;
+    
+        }
+
+        .payment-button i{
+            font-size:24px;
+            veritcal-align:middle;
+            margin-right:5px;
+        }
+        .payment-button a{
+            color: white;
+            text-decoration:none;
+        }
+        .payment-button{
+            transition: transform 0.3s ease; /* Define the transition property */
+        }
+        
+        .payment-button:hover {
+            transform: translateY(-5px); /* Adjust the movement when hovered */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"> <i class="bi bi-bank"></i> Dream it Live it</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Options</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-cash-coin"></i> Pay or Transfer</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Details</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    More
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-screwdriver"></i> Settings</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-bar-chart"></i> Logout</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+      <div class="card-container">
+        <h3 class="main--title">Today's data</h3>
+        <h3 class="balance"><i class="bi bi-currency-pound"></i>{{balance}}</h3>
+        <button type="button" class="payment-button dark-blue"><i class="bi bi-cash-coin icont"></i><br><a href="" class="button-link">Pay or Transfer</a></button>
+        <button type="button" class="payment-button dark-green"><i class="bi bi-credit-card icont"></i><br><a href="" class="button-link">Regular Payments</a></button>
+        <button type="button" class="payment-button orange"><i class="bi bi-cart icont"></i><br><a href="" class="button-link">Shopping</a></button>
+        <hr>
+        <div class="card--wrapper">
+            <div class="payment--card light-red">
+                
+                <div class="card--header">
+                    <div class="amount">
+                        <span class="title">
+                            Payment Amount
+                        </span>
+                        <span class="amount-value"></span>
+                        
+                    </div>
+                    <i class="fas fa-pound-sign icon"></i>
+                </div>
+                <span class="card-details">{{account_number}}</span>
+            </div>
+            <div class="payment--card light-green">
+                
+                <div class="card--header">
+                    <div class="amount">
+                        <span class="title">
+                            Payment  Order
+                        </span>
+                        <span class="amount-value"></span>
+                        
+                    </div>
+                    <i class="fas fa-list icon dark-purple"></i>
+                </div>
+                <span class="card-details">{{account_number}}</span>
+            </div>
+        </div>
+        
+        
+
+    </div>
+    
+
+<!-- Your content goes here -->
+    <div class="content" style="margin-left: 200px; padding: 20px;">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+<!-- Include your JavaScript scripts, if any -->
+
+</body>
+</html>
